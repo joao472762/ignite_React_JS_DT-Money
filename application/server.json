@@ -1,0 +1,21 @@
+{
+    "transactions": [
+        {
+            "id": 0,
+            "description": "Comprar uma shinerai",
+            "type": "outcome",
+            "category": "Venda",
+            "price": -12122,
+            "createdAt": "Sat Aug 13 2022"
+        },
+        {
+            "id": 1,
+            "description": "Comprar uma shinerai",
+            "type": "income",
+            "category": "Venda",
+            "price": -12122,
+            "createdAt": "Sat Aug 13 2022"
+        }
+       
+    ]
+}
