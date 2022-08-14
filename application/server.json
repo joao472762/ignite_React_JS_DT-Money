@@ -4,18 +4,28 @@
             "id": 0,
             "description": "Comprar uma shinerai",
             "type": "outcome",
-            "category": "Venda",
-            "price": -12122,
+            "category": "Compra",
+            "price": 12122,
+            "createdAt": "Sat Aug 13 2022"
+        },
+
+        {
+            "id": 1,
+            "description": "Desenvolvimento de site",
+            "type": "income",
+            "category": "Negócios",
+            "price": 5000,
             "createdAt": "Sat Aug 13 2022"
         },
         {
             "id": 1,
-            "description": "Comprar uma shinerai",
+            "description": "Investimentos",
             "type": "income",
-            "category": "Venda",
-            "price": -12122,
+            "category": "Negócios",
+            "price": 2000,
             "createdAt": "Sat Aug 13 2022"
         }
+
        
     ]
 }
