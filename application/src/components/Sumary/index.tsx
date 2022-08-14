@@ -4,7 +4,7 @@ import { SumaryCard, SumaryContainer } from './styles'
 import { priceFormatter } from '../../utils/formatter'
 import { ArrowCircleUp, ArrowCircleDown, CurrencyDollar } from 'phosphor-react'
 
-
+    
 export function Sumary(){
     const {colors} =  defaultTheme
     const sumary = useSumary()
