@@ -1,38 +1,14 @@
-import { SumaryCard, SumaryContainer } from './styles'
-import { ArrowCircleUp, ArrowCircleDown, CurrencyDollar } from 'phosphor-react'
 import { defaultTheme } from '../../styles/theme'
-import { useContext } from 'react'
-import { TransactionsContext } from '../../contexts/TransactionsContext'
+import { useSumary } from '../../hooks/useSumary'
+import { SumaryCard, SumaryContainer } from './styles'
+import { priceFormatter } from '../../utils/formatter'
+import { ArrowCircleUp, ArrowCircleDown, CurrencyDollar } from 'phosphor-react'
 
 
 export function Sumary(){
-    const {tranasactions} = useContext(TransactionsContext)
     const {colors} =  defaultTheme
-
-    const sumary = tranasactions.reduce((acc, transaction) => {
-        if(transaction.type === 'income'){
-            acc.income += transaction.price
-            acc.total  += transaction.price
-        }
-
-        else{
-           acc.outcome += transaction.price
-           acc.total  -= transaction.price
-        }
-
-       return acc
-    },{income: 0, outcome: 0 , total: 0})
+    const sumary = useSumary()
     
-    function  formatPrice(price:number){
-        const pirceFormated = price.toLocaleString('pt-br',{
-            style: 'currency',
-            currency: 'BRL'
-        })
-
-        return  pirceFormated
-    }
-
-
     return(
         <SumaryContainer >
             <SumaryCard>
@@ -40,7 +16,7 @@ export function Sumary(){
                     <span> Entradas </span>
                     <ArrowCircleUp color={colors['green-500']} size={32}/>
                 </header>
-                <strong>{formatPrice(sumary.income)}</strong>
+                <strong>{priceFormatter.format(sumary.income)}</strong>
             </SumaryCard>
 
             <SumaryCard>
@@ -48,7 +24,7 @@ export function Sumary(){
                     <span> Saídas</span>
                     <ArrowCircleDown color={colors['red-500']} size={32}/>
                 </header>
-                <strong>{formatPrice(sumary.outcome)}</strong>
+                <strong>{priceFormatter.format(sumary.outcome)}</strong>
             </SumaryCard>
 
             <SumaryCard variant='green'>
@@ -56,7 +32,7 @@ export function Sumary(){
                     <span> Total</span>
                     <CurrencyDollar color={colors.white} size={32}/>
                 </header>
-                <strong>{formatPrice(sumary.total)}</strong>
+                <strong>{priceFormatter.format(sumary.total)}</strong>
             </SumaryCard>
 
         </SumaryContainer>

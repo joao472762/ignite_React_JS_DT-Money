@@ -3,6 +3,7 @@ import { Header } from "../../components/Header";
 import { SearchForm } from "../../components/SearchForm";
 import { Sumary } from "../../components/Sumary";
 import { TransactionsContext } from "../../contexts/TransactionsContext";
+import { dateFormatter, priceFormatter } from "../../utils/formatter";
 import {  HomeContent, PriceHilight,TransactionsContainer,TansactionsTable} from "./styles";
 
 export function Home(){
@@ -25,14 +26,12 @@ export function Home(){
                                     <td>{tranasaction.description}</td>
                                     <td>
                                         <PriceHilight variant={tranasaction.type}>
-                                            {tranasaction.price.toLocaleString('pt-br',{
-                                                style: 'currency',
-                                                currency: 'BRL'
-                                            })}
+                                            {tranasaction.type === 'outcome' && '- '}
+                                            {priceFormatter.format(tranasaction.price)}
                                         </PriceHilight>
                                     </td>
                                     <td>{tranasaction.category}</td>
-                                    <td>13/04/2022</td>
+                                    <td>{dateFormatter.format(new Date(tranasaction.createdAt))}</td>
                                 </tr>
                             ))
                         }
