@@ -1,8 +1,8 @@
-import { SearchFormContainer,SearchButton} from "./styles";
-import {MagnifyingGlass} from 'phosphor-react'
-import { useForm } from "react-hook-form";
-import {zodResolver} from '@hookform/resolvers/zod'
 import * as zod from 'zod'
+import { useForm } from "react-hook-form";
+import {MagnifyingGlass} from 'phosphor-react'
+import {zodResolver} from '@hookform/resolvers/zod'
+import { SearchFormContainer,SearchButton} from "./styles";
 
 const SearchFormSchema = zod.object({
     query: zod.string().min(1)
@@ -28,7 +28,6 @@ export function SearchForm(){
     function handleSearchTransactions(data: SearchFormSchemaInputs){
         console.log(data.query)
         reset()
-
     }
 
     return(

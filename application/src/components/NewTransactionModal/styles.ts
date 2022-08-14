@@ -73,7 +73,12 @@ export const CreateNewTransaction = styled.button`
     background-color: ${( {theme} ) => theme.colors["green-500"]};
     transition: .2s background-color;
 
-    &:hover{
+    &:disabled{
+        cursor: not-allowed;
+        opacity: .7;
+    }
+
+    &:not(:disabled):hover{
         background-color: ${( {theme} ) => theme.colors["green-700"]};
     }
 
