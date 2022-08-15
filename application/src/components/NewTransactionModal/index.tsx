@@ -1,7 +1,10 @@
 import * as zod from 'zod'
+import { useContext } from 'react';
 import * as Dialog from '@radix-ui/react-dialog';
 import { zodResolver} from '@hookform/resolvers/zod';
+import { Controller, useForm } from 'react-hook-form';
 import { X, ArrowCircleDown, ArrowCircleUp} from "phosphor-react";
+import { TransactionsContext } from '../../contexts/TransactionsContext';
 
 import { defaultTheme } from "../../styles/theme";
 import { 
@@ -12,7 +15,7 @@ import {
     Close, 
     TransactionType
 } from "./styles";
-import { Controller, useForm } from 'react-hook-form';
+import { useContextSelector } from 'use-context-selector';
 
 const NewTransactionFormSchema = zod.object({
     price: zod.number(),
@@ -24,6 +27,9 @@ const NewTransactionFormSchema = zod.object({
 type NewTransactionFormInputs =  zod.infer<typeof NewTransactionFormSchema>
 
 export function NewTransactionModal(){
+    const createTransactions = useContextSelector(TransactionsContext,(context) => {
+        return context.createTransactions
+    })
 
     const {
         reset,
@@ -38,8 +44,16 @@ export function NewTransactionModal(){
     }))
 
     async function handleCreateNewTransaction(data: NewTransactionFormInputs){
-        await new Promise(response => setTimeout(response, 3000))
-        console.log(data)
+
+        const {category,description,price,type} = data
+
+        createTransactions({
+            type,
+            price,
+            category,
+            description,
+        })
+        reset()
     }
 
     const {colors} = defaultTheme

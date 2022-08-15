@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContextSelector } from "use-context-selector";
 import { Header } from "../../components/Header";
 import { SearchForm } from "../../components/SearchForm";
 import { Sumary } from "../../components/Sumary";
@@ -7,7 +7,9 @@ import { dateFormatter, priceFormatter } from "../../utils/formatter";
 import {  HomeContent, PriceHilight,TransactionsContainer,TansactionsTable} from "./styles";
 
 export function Home(){
-   const {tranasactions} = useContext(TransactionsContext)
+   const tranasactions = useContextSelector(TransactionsContext, (context) => {
+    return context.tranasactions
+   })
   
     return(
         <div>
